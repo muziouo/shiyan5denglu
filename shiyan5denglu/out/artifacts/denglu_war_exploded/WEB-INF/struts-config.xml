@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+
+<!-- ================================================ Form Bean Definitions -->
+
+    <form-beans>
+        <form-bean name="LoginForm" type="muzi.LoginActionForm"></form-bean>
+    </form-beans>
+   <global-forwards>
+       <forward name="login" path="/login.jsp" redirect="true"></forward>
+   </global-forwards>
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+            <!-- Default "Welcome" action -->
+            <!-- Forwards to Welcome.jsp -->
+       <action path="/login"
+               name="LoginForm"
+               type="muzi.LoginAction"
+               scope="request"
+       >        
+             <forward name="success" path="/login_success.jsp"></forward>       
+             <forward name="error" path="/login_error.jsp"></forward>
+       </action>
+        <action path="/must_login"
+                type="muzi.MustLoginAction"
+        >
+            <forward name="login" path="/login.jsp" redirect="true"></forward>
+            <forward name="success" path="/WEB-INF/jsp/must_login.jsp"></forward>
+        </action>
+
+        <action path="/dyna_actionforward" type="muzi.DynaActionForwardTestAction">
+            <forward name="page1" path="/page1.jsp"></forward>
+            <forward name="page2" path="/page2.jsp"></forward>
+        </action>
+    </action-mappings>
+    
+</struts-config>
+
